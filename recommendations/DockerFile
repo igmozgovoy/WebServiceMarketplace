@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+
+WORKDIR /service
+COPY protobufs /protobufs
+COPY recommendations /recommendations
+RUN pip install --upgrade pip
+RUN pip install -r /recommendations/requirements.txt
+
+RUN python -m grpc_tools.protoc -I /protobufs \
+  --python_out=/recommendations \
+  --grpc_python_out=/recommendations \
+  /protobufs/recommendations.proto
+
+EXPOSE 50051
+ENTRYPOINT ["python", "/recommendations/recommendations.py"]
+
+
+

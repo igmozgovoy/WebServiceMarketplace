@@ -1,0 +1,16 @@
+<!--homepage.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги для вас</title>
+</head>
+<body>
+    <h1>Книги для вас</h1>
+    <ul>
+        {% for book in recommendations %}
+            <li>{{ book.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

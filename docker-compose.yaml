@@ -1,0 +1,30 @@
+services:
+  recommendations:
+    build:
+      context: .
+      dockerfile: recommendations/DockerFile
+    ports:
+      - "50051:50051"
+    networks:
+      - microservices
+
+  marketplace:
+    build:
+      context: .
+      dockerfile: marketplace/DockerFile
+    ports:
+      - "5001:5001"
+    environment:
+      - RECOMMENDATIONS_HOST=recommendations
+    networks:
+      - microservices
+    depends_on:
+      - recommendations
+
+networks:
+  microservices:
+
+
+
+
+

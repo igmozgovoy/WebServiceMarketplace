@@ -1,0 +1,13 @@
+FROM python:3.12-slim
+
+WORKDIR /service
+COPY marketplace /marketplace
+RUN pip install --upgrade pip
+RUN pip install -r /marketplace/requirements.txt
+
+EXPOSE 5001
+ENV FLASK_APP=marketplace.py
+ENTRYPOINT ["python", "/marketplace/marketplace.py"]
+
+
+
